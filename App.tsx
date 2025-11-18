@@ -7,6 +7,11 @@ import { FocusTimer } from './src/components/bento/FocusTimer';
 import { SmartSchedule } from './src/components/bento/SmartSchedule';
 import { StatsCard } from './src/components/bento/StatsCard';
 import { AchievementsCard } from './src/components/bento/AchievementsCard';
+import { MemoryPalaceCard } from './src/components/bento/MemoryPalaceCard';
+import { EnergyPredictionCard } from './src/components/bento/EnergyPredictionCard';
+import { TaskBreakdownCard } from './src/components/bento/TaskBreakdownCard';
+import { InterestRotationCard } from './src/components/bento/InterestRotationCard';
+import { IntegrationDiscoveryCard } from './src/components/bento/IntegrationDiscoveryCard';
 import { Text } from './src/components/ui/Text';
 import { Colors } from './src/constants/colors';
 import { Spacing } from './src/constants/spacing';
@@ -24,6 +29,11 @@ import { VoiceCommand } from './src/types';
  * - Focus timer with circular progress
  * - Smart scheduling
  * - Gamification and achievements
+ * - 🏰 Memory Palace Builder (spatial memory system)
+ * - ⚡ Energy Level Prediction (circadian optimization)
+ * - 📋 Task Breakdown Engine (executive function support)
+ * - 🔄 Interest Rotation Predictor (hyperfixation cycle tracking)
+ * - 🌐 Integration Discovery (automatic API orchestration)
  */
 export default function App() {
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
@@ -101,6 +111,27 @@ export default function App() {
             <AchievementsCard deviceType={deviceType} />
           </View>
         </View>
+
+        {/* NEW FEATURES - Phase 1: HIGH IMPACT, LOW EFFORT */}
+
+        {/* Memory Palace Builder */}
+        <MemoryPalaceCard deviceType={deviceType} />
+
+        {/* Energy & Interest Rotation Row */}
+        <View style={[styles.row, deviceType === 'mobile' && styles.column]}>
+          <View style={[styles.halfWidth, deviceType === 'mobile' && styles.fullWidth]}>
+            <EnergyPredictionCard deviceType={deviceType} />
+          </View>
+          <View style={[styles.halfWidth, deviceType === 'mobile' && styles.fullWidth]}>
+            <InterestRotationCard deviceType={deviceType} />
+          </View>
+        </View>
+
+        {/* Task Breakdown */}
+        <TaskBreakdownCard deviceType={deviceType} />
+
+        {/* Integration Discovery */}
+        <IntegrationDiscoveryCard deviceType={deviceType} />
       </BentoGrid>
 
       {/* Bottom Navigation (Mobile only) */}
