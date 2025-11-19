@@ -15,6 +15,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { useReducedMotion } from '@/src/ui/hypermax/utils/useReducedMotion';
 
 export interface NavItem {
   href: string;
@@ -43,6 +44,7 @@ export default function BottomNavHypermax({
   className,
 }: BottomNavHypermaxProps) {
   const pathname = usePathname();
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div className={cn('flex justify-around items-center', className)}>
@@ -54,16 +56,17 @@ export default function BottomNavHypermax({
             key={item.href}
             href={item.href}
             className={cn(
-              'flex flex-col items-center gap-1 p-2 min-w-[64px] rounded-xl transition-all duration-300',
+              'flex flex-col items-center gap-1 p-3 min-w-[72px] min-h-[48px] rounded-xl',
+              !prefersReducedMotion && 'transition-all duration-300',
               isActive
-                ? `${item.gradient} shadow-lg scale-110 border border-white/30`
-                : 'bg-white/10 text-white/70 hover:bg-white/20 hover:scale-105'
+                ? `${item.gradient} shadow-lg border border-white/30 ${!prefersReducedMotion ? 'scale-110' : ''}`
+                : `bg-white/10 text-white/90 hover:bg-white/20 ${!prefersReducedMotion ? 'hover:scale-105' : ''}`
             )}
             aria-label={item.label}
             aria-current={isActive ? 'page' : undefined}
           >
             <span
-              className={cn('text-2xl', isActive && 'bounce')}
+              className={cn('text-2xl', isActive && !prefersReducedMotion && 'bounce')}
               role="img"
               aria-hidden="true"
             >
