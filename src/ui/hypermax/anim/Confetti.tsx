@@ -56,7 +56,7 @@ export const Confetti: React.FC<ConfettiProps> = ({
   onComplete,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
   const particlesRef = useRef<ConfettiParticle[]>([]);
   const startTimeRef = useRef<number>(0);
 
