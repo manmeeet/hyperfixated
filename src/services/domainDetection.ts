@@ -348,7 +348,7 @@ export function generateOnboardingQuestions(
     },
     {
       id: 'experience_level',
-      question: `What's your experience level with ${detectionResult.suggestedName}?`,
+      question: `What\'s your experience level with ${detectionResult.suggestedName}?`,
       type: 'choice',
       options: [
         'Complete beginner (just discovered it)',
@@ -367,7 +367,7 @@ export function generateOnboardingQuestions(
     },
     {
       id: 'primary_goal',
-      question: `What's your main goal with ${detectionResult.suggestedName}?`,
+      question: `What\'s your main goal with ${detectionResult.suggestedName}?`,
       type: 'choice',
       options: [
         'Just for fun / hobby',
@@ -396,7 +396,7 @@ export function generateOnboardingQuestions(
     },
     {
       id: 'budget',
-      question: 'What's your budget for tools, courses, and materials?',
+      question: 'What\'s your budget for tools, courses, and materials?',
       type: 'choice',
       options: [
         'Minimal ($0-50/month)',

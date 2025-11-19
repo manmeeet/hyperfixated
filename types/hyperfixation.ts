@@ -808,8 +808,6 @@ export interface UserProfile {
 
 export type {
   // Re-export existing types from index.ts
-  GridSize,
-  BentoCardConfig,
   VoiceCommand,
   FocusSession,
   Achievement,

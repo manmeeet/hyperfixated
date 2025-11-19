@@ -12,14 +12,16 @@ export const View = React.forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElem
 View.displayName = 'View';
 
 // TouchableOpacity -> button with opacity effect
-export const TouchableOpacity = React.forwardRef<HTMLButtonElement, React.HTMLProps<HTMLButtonElement> & {
+export const TouchableOpacity = React.forwardRef<HTMLButtonElement, Omit<React.HTMLProps<HTMLButtonElement>, 'type'> & {
   onPress?: () => void;
   activeOpacity?: number;
   style?: any;
+  type?: 'button' | 'submit' | 'reset';
 }>(
-  ({ onPress, onClick, style, className = '', activeOpacity = 0.2, ...props }, ref) => (
+  ({ onPress, onClick, style, className = '', activeOpacity = 0.2, type = 'button', ...props }, ref) => (
     <button
       ref={ref}
+      type={type}
       onClick={onPress || onClick}
       className={`transition-opacity hover:opacity-${Math.round((1 - activeOpacity) * 100)} ${className}`}
       style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', ...style }}

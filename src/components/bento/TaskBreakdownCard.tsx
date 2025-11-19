@@ -194,10 +194,10 @@ export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType
                       <View style={styles.subtaskContent}>
                         <Text
                           size="sm"
-                          style={[
-                            styles.subtaskTitle,
-                            subtask.completed && styles.subtaskCompleted,
-                          ]}
+                          style={{
+                            ...styles.subtaskTitle,
+                            ...(subtask.completed ? styles.subtaskCompleted : {}),
+                          }}
                         >
                           {subtask.title}
                         </Text>
@@ -254,12 +254,12 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.md,
   },
   input: {
-    backgroundColor: Colors.background.primary,
+    backgroundColor: Colors.background,
     borderWidth: 1,
     borderColor: Colors.textSecondary,
     borderRadius: Spacing.xs,
     padding: Spacing.sm,
-    color: Colors.text.primary,
+    color: Colors.text,
     fontSize: 14,
     marginBottom: Spacing.sm,
   },
