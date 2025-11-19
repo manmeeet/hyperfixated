@@ -241,7 +241,7 @@ ProgressBarHypermax.displayName = 'ProgressBarHypermax';
 // XP BAR WITH LEVEL DISPLAY
 // ============================================================================
 
-export interface XpBarHypermaxProps extends Omit<ProgressBarHypermaxProps, 'variant' | 'label'> {
+export interface XpBarHypermaxProps extends Omit<ProgressBarHypermaxProps, 'variant' | 'label' | 'value' | 'max'> {
   /** Current level */
   level: number;
   /** Current XP */
