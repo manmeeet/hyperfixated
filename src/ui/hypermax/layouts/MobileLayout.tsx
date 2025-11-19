@@ -13,6 +13,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import AriaLiveRegion from '@/src/ui/hypermax/components/AriaLiveRegion';
+import { useKeyboardAvoidance } from '@/src/ui/hypermax/utils/useKeyboardAvoidance';
 
 export interface MobileLayoutProps {
   children: React.ReactNode;
@@ -32,6 +33,7 @@ export default function MobileLayout({
 }: MobileLayoutProps) {
   const bottomNavRef = useRef<HTMLDivElement>(null);
   const [bottomNavHeight, setBottomNavHeight] = useState<number>(96); // Default fallback
+  const mainContentRef = useKeyboardAvoidance<HTMLElement>({ offset: 120 });
 
   useEffect(() => {
     if (!bottomNavRef.current) return;
@@ -80,6 +82,7 @@ export default function MobileLayout({
 
       {/* Main Content - Scrollable, centered, max-width */}
       <main
+        ref={mainContentRef}
         id="main-content"
         className={cn(
           'flex-1 overflow-y-auto',
