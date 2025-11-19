@@ -6,17 +6,14 @@
 
 import React from 'react';
 import { View, StyleSheet } from '../native-compat';
-import { Card } from '../ui/Card';
-import { Text } from '../ui/Text';
-import { Colors } from '../../constants/colors';
-import { Spacing } from '../../constants/spacing';
-import { DeviceType } from '../../constants/breakpoints';
+import { Card } from '@/components/ui/Card';
+import { Text } from '@/components/ui/Text';
 
 interface InterestRotationCardProps {
-  deviceType: DeviceType;
+  deviceType?: string;
 }
 
-export const InterestRotationCard: React.FC<InterestRotationCardProps> = ({ deviceType }) => {
+export const InterestRotationCard: React.FC<InterestRotationCardProps> = ({ deviceType = 'desktop' }) => {
   const currentInterest = {
     name: 'React Native Development',
     emoji: '📱',
@@ -38,9 +35,9 @@ export const InterestRotationCard: React.FC<InterestRotationCardProps> = ({ devi
   ];
 
   const getIntensityColor = (level: number) => {
-    if (level >= 75) return Colors.pink.primary;
-    if (level >= 50) return Colors.purple.primary;
-    return Colors.cyan.primary;
+    if (level >= 75) return 'var(--pink-primary)';
+    if (level >= 50) return 'var(--purple-primary)';
+    return 'var(--cyan-primary)';
   };
 
   return (
@@ -158,108 +155,110 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: Spacing.md,
+    flexDirection: 'row' as const,
+    justifyContent: 'space-between' as const,
+    alignItems: 'center' as const,
+    marginBottom: 16,
   },
   headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
   },
   subtitle: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   currentInterest: {
-    alignItems: 'center',
-    padding: Spacing.md,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
-    marginBottom: Spacing.md,
+    alignItems: 'center' as const,
+    padding: 16,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
+    marginBottom: 16,
   },
   interestName: {
-    marginTop: Spacing.sm,
-    marginBottom: Spacing.md,
-    textAlign: 'center',
+    marginTop: 8,
+    marginBottom: 16,
+    textAlign: 'center' as const,
   },
   statsRow: {
-    flexDirection: 'row',
-    gap: Spacing.xl,
+    flexDirection: 'row' as const,
+    gap: 32,
   },
   stat: {
-    alignItems: 'center',
-    gap: Spacing.xs,
+    alignItems: 'center' as const,
+    gap: 4,
   },
   statLabel: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   intensityBadge: {
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    borderRadius: Spacing.sm,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
+    borderRadius: 8,
   },
   prediction: {
-    padding: Spacing.md,
-    backgroundColor: Colors.purple.light,
-    borderRadius: Spacing.sm,
-    marginBottom: Spacing.md,
+    padding: 16,
+    backgroundColor: 'var(--purple-light)',
+    borderRadius: 8,
+    marginBottom: 16,
     borderWidth: 1,
-    borderColor: Colors.purple.primary,
+    borderColor: 'var(--purple-primary)',
   },
   predictionHeader: {
-    marginBottom: Spacing.sm,
+    marginBottom: 8,
   },
   predictionContent: {
-    marginBottom: Spacing.md,
+    marginBottom: 16,
   },
   predictionText: {
-    marginBottom: Spacing.xs,
+    marginBottom: 4,
   },
   predictionDate: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   progressBar: {
     height: 8,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
-    overflow: 'hidden',
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
+    overflow: 'hidden' as const,
   },
   progressFill: {
     height: '100%',
-    backgroundColor: Colors.purple.primary,
+    backgroundColor: 'var(--purple-primary)',
   },
   nextInterests: {
-    gap: Spacing.sm,
+    gap: 8,
   },
   sectionTitle: {
-    marginBottom: Spacing.sm,
+    marginBottom: 8,
   },
   nextInterestRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
-    padding: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
+    padding: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
   },
   nextInterestContent: {
     flex: 1,
-    gap: Spacing.xs,
+    gap: 4,
   },
   probabilityBar: {
     height: 4,
-    backgroundColor: Colors.surface,
+    backgroundColor: 'var(--color-surface)',
     borderRadius: 2,
-    overflow: 'hidden',
+    overflow: 'hidden' as const,
   },
   probabilityFill: {
     height: '100%',
-    backgroundColor: Colors.pink.primary,
+    backgroundColor: 'var(--pink-primary)',
   },
   probabilityText: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
     minWidth: 40,
-    textAlign: 'right',
+    textAlign: 'right' as const,
   },
 });

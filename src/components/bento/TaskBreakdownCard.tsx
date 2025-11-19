@@ -6,11 +6,8 @@
 
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, TextInput, ScrollView } from '../native-compat';
-import { Card } from '../ui/Card';
-import { Text } from '../ui/Text';
-import { Colors } from '../../constants/colors';
-import { Spacing } from '../../constants/spacing';
-import { DeviceType } from '../../constants/breakpoints';
+import { Card } from '@/components/ui/Card';
+import { Text } from '@/components/ui/Text';
 
 interface Subtask {
   id: string;
@@ -27,10 +24,10 @@ interface Task {
 }
 
 interface TaskBreakdownCardProps {
-  deviceType: DeviceType;
+  deviceType?: string;
 }
 
-export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType }) => {
+export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType = 'desktop' }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [isCreating, setIsCreating] = useState(false);
@@ -96,9 +93,9 @@ export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType
   };
 
   const getComplexityColor = (score: number) => {
-    if (score >= 80) return Colors.red.primary;
-    if (score >= 50) return Colors.amber.primary;
-    return Colors.green.primary;
+    if (score >= 80) return 'var(--red-primary)';
+    if (score >= 50) return 'var(--amber-primary)';
+    return 'var(--green-primary)';
   };
 
   return (
@@ -231,115 +228,121 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: Spacing.md,
+    flexDirection: 'row' as const,
+    justifyContent: 'space-between' as const,
+    alignItems: 'center' as const,
+    marginBottom: 16,
   },
   headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
   },
   subtitle: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   addButton: {
-    padding: Spacing.xs,
+    padding: 4,
   },
   createForm: {
-    padding: Spacing.md,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
-    marginBottom: Spacing.md,
+    padding: 16,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
+    marginBottom: 16,
   },
   input: {
-    backgroundColor: Colors.background,
+    backgroundColor: 'var(--color-background)',
     borderWidth: 1,
-    borderColor: Colors.textSecondary,
-    borderRadius: Spacing.xs,
-    padding: Spacing.sm,
-    color: Colors.text,
+    borderColor: 'var(--color-text-secondary)',
+    borderRadius: 4,
+    padding: 8,
+    color: 'var(--color-text)',
     fontSize: 14,
-    marginBottom: Spacing.sm,
+    marginBottom: 8,
   },
   formButtons: {
-    flexDirection: 'row',
-    gap: Spacing.sm,
-    justifyContent: 'flex-end',
+    flexDirection: 'row' as const,
+    gap: 8,
+    justifyContent: 'flex-end' as const,
   },
   cancelButton: {
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
   },
   createButton: {
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    backgroundColor: Colors.amber.primary,
-    borderRadius: Spacing.xs,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: 'var(--amber-primary)',
+    borderRadius: 4,
   },
   tasksList: {
     flex: 1,
   },
   taskCard: {
-    padding: Spacing.md,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
-    marginBottom: Spacing.md,
+    padding: 16,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
+    marginBottom: 16,
   },
   taskHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: Spacing.xs,
+    flexDirection: 'row' as const,
+    justifyContent: 'space-between' as const,
+    alignItems: 'flex-start' as const,
+    marginBottom: 4,
   },
   taskTitle: {
     flex: 1,
-    marginRight: Spacing.sm,
+    marginRight: 8,
   },
   complexityBadge: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    borderRadius: Spacing.xs,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 4,
+    paddingBottom: 4,
+    borderRadius: 4,
   },
   taskMeta: {
-    color: Colors.textSecondary,
-    marginBottom: Spacing.md,
+    color: 'var(--color-text-secondary)',
+    marginBottom: 16,
   },
   subtasksList: {
-    gap: Spacing.sm,
+    gap: 8,
   },
   subtaskRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
-    padding: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
+    padding: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
   },
   subtaskContent: {
     flex: 1,
   },
   subtaskTitle: {
-    marginBottom: Spacing.xs,
+    marginBottom: 4,
   },
   subtaskCompleted: {
-    textDecorationLine: 'line-through',
-    color: Colors.textSecondary,
+    textDecorationLine: 'line-through' as const,
+    color: 'var(--color-text-secondary)',
   },
   timeEstimate: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   emptyState: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: Spacing.xl,
-    gap: Spacing.md,
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
+    padding: 32,
+    gap: 16,
   },
   emptyText: {
-    color: Colors.textSecondary,
-    textAlign: 'center',
+    color: 'var(--color-text-secondary)',
+    textAlign: 'center' as const,
   },
 });
