@@ -8,7 +8,7 @@
  * - Optimizing data flow
  */
 
-import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../types/agents';
+import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../../types/agents';
 
 class FrameworkAgentImpl implements Agent {
   type = 'framework' as const;

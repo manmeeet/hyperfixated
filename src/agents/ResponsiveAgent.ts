@@ -4,7 +4,7 @@
  * Optimizes features for all device sizes
  */
 
-import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../types/agents';
+import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../../types/agents';
 
 class ResponsiveAgentImpl implements Agent {
   type = 'responsive' as const;

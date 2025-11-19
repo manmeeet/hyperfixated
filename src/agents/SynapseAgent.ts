@@ -4,7 +4,7 @@
  * Handles voice commands and multi-modal input
  */
 
-import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../types/agents';
+import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../../types/agents';
 
 class SynapseAgentImpl implements Agent {
   type = 'synapse' as const;

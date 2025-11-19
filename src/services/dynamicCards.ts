@@ -12,7 +12,7 @@ import type {
   HyperfixationDomain,
   LifecyclePhase,
   DomainCategory,
-} from '../types/hyperfixation';
+} from '../../types/hyperfixation';
 import { generateExamplesForDomain } from './universalCommands';
 
 // ============================================================================

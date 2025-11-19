@@ -5,7 +5,7 @@
  */
 
 import { create } from 'zustand';
-import { MemoryPalace, Room, MemoryItem } from '../../types/memoryPalace';
+import { MemoryPalace, Room, MemoryItem } from '../../../types/memoryPalace';
 
 interface MemoryPalaceState {
   palaces: MemoryPalace[];

@@ -11,7 +11,7 @@ import type {
   OnboardingSession,
   OnboardingResponse,
   LifecyclePhase,
-} from '../types/hyperfixation';
+} from '../../types/hyperfixation';
 
 // ============================================================================
 // DETECTION SIGNAL ANALYSIS

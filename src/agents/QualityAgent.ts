@@ -4,7 +4,7 @@
  * Tests and validates feature quality
  */
 
-import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../types/agents';
+import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../../types/agents';
 
 class QualityAgentImpl implements Agent {
   type = 'quality' as const;

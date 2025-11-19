@@ -8,7 +8,7 @@
  * - Maintaining hypermaximalist retro aesthetic
  */
 
-import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../types/agents';
+import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../../types/agents';
 
 class PixelAgentImpl implements Agent {
   type = 'pixel' as const;
