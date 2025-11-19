@@ -6,17 +6,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity } from '../native-compat';
-import { Card } from '../ui/Card';
-import { Text } from '../ui/Text';
-import { Colors } from '../../constants/colors';
-import { Spacing } from '../../constants/spacing';
-import { DeviceType } from '../../constants/breakpoints';
+import { Card } from '@/components/ui/Card';
+import { Text } from '@/components/ui/Text';
 
 interface EnergyPredictionCardProps {
-  deviceType: DeviceType;
+  deviceType?: string;
 }
 
-export const EnergyPredictionCard: React.FC<EnergyPredictionCardProps> = ({ deviceType }) => {
+export const EnergyPredictionCard: React.FC<EnergyPredictionCardProps> = ({ deviceType = 'desktop' }) => {
   const [currentEnergy, setCurrentEnergy] = useState(75);
   const [predictedEnergy, setPredictedEnergy] = useState<number[]>([]);
 
@@ -35,9 +32,9 @@ export const EnergyPredictionCard: React.FC<EnergyPredictionCardProps> = ({ devi
   }, []);
 
   const getEnergyColor = (level: number) => {
-    if (level >= 75) return Colors.green.primary;
-    if (level >= 50) return Colors.amber.primary;
-    return Colors.red.primary;
+    if (level >= 75) return 'var(--green-primary)';
+    if (level >= 50) return 'var(--amber-primary)';
+    return 'var(--red-primary)';
   };
 
   const getEnergyEmoji = (level: number) => {
@@ -126,64 +123,67 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: Spacing.md,
+    flexDirection: 'row' as const,
+    justifyContent: 'space-between' as const,
+    alignItems: 'center' as const,
+    marginBottom: 16,
   },
   headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
   },
   subtitle: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   badge: {
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    borderRadius: Spacing.sm,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
+    borderRadius: 8,
   },
   chart: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
+    flexDirection: 'row' as const,
+    alignItems: 'flex-end' as const,
+    justifyContent: 'space-between' as const,
     height: 120,
-    marginBottom: Spacing.md,
-    paddingHorizontal: Spacing.xs,
+    marginBottom: 16,
+    paddingLeft: 4,
+    paddingRight: 4,
   },
   chartBar: {
     flex: 1,
-    alignItems: 'center',
-    gap: Spacing.xs,
+    alignItems: 'center' as const,
+    gap: 4,
   },
   bar: {
     width: '80%',
-    borderRadius: Spacing.xs,
+    borderRadius: 4,
     minHeight: 4,
   },
   hourLabel: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   insights: {
-    gap: Spacing.sm,
-    marginBottom: Spacing.md,
+    gap: 8,
+    marginBottom: 16,
   },
   insightRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
-    padding: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
+    padding: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
   },
   insightText: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   logButton: {
-    padding: Spacing.md,
-    backgroundColor: Colors.purple.primary,
-    borderRadius: Spacing.sm,
-    alignItems: 'center',
+    padding: 16,
+    backgroundColor: 'var(--purple-primary)',
+    borderRadius: 8,
+    alignItems: 'center' as const,
   },
 });

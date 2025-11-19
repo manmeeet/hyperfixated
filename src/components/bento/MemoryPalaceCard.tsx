@@ -6,19 +6,16 @@
 
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, TextInput, ScrollView } from '../native-compat';
-import { Card } from '../ui/Card';
-import { Text } from '../ui/Text';
-import { Colors } from '../../constants/colors';
-import { Spacing } from '../../constants/spacing';
-import { DeviceType } from '../../constants/breakpoints';
+import { Card } from '@/components/ui/Card';
+import { Text } from '@/components/ui/Text';
 import { useMemoryPalaceStore } from '../../store/slices/memoryPalaceSlice';
 import { Room, MemoryItem } from '../../../types/memoryPalace';
 
 interface MemoryPalaceCardProps {
-  deviceType: DeviceType;
+  deviceType?: string;
 }
 
-export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }) => {
+export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType = 'desktop' }) => {
   const {
     currentPalace,
     addRoom,
@@ -67,7 +64,7 @@ export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }
         y: Math.random() * 300,
       },
       items: [],
-      color: Colors.purple.primary,
+      color: '#7C3AED',
     });
 
     setNewRoomName('');
@@ -85,7 +82,7 @@ export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }
         y: Math.random() * 200,
       },
       associations: [],
-      color: Colors.cyan.primary,
+      color: '#00D4E7',
       emoji: '📝',
     });
 
@@ -259,124 +256,130 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: Spacing.md,
+    flexDirection: 'row' as const,
+    justifyContent: 'space-between' as const,
+    alignItems: 'center' as const,
+    marginBottom: 16,
   },
   headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
   },
   subtitle: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   badge: {
-    backgroundColor: Colors.green.primary,
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    borderRadius: Spacing.sm,
+    backgroundColor: 'var(--green-primary)',
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 4,
+    paddingBottom: 4,
+    borderRadius: 8,
   },
   roomsContainer: {
     flex: 1,
   },
   roomsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: Spacing.sm,
-    marginBottom: Spacing.md,
+    flexDirection: 'row' as const,
+    flexWrap: 'wrap' as const,
+    gap: 8,
+    marginBottom: 16,
   },
   roomCard: {
     width: 90,
-    padding: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
+    padding: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
     borderWidth: 2,
-    borderColor: Colors.textSecondary,
-    alignItems: 'center',
-    gap: Spacing.xs,
+    borderColor: 'var(--color-text-secondary)',
+    alignItems: 'center' as const,
+    gap: 4,
   },
   roomCardSelected: {
-    borderColor: Colors.purple.primary,
-    backgroundColor: Colors.purple.light,
+    borderColor: 'var(--purple-primary)',
+    backgroundColor: 'var(--purple-light)',
   },
   itemCount: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   addRoomButton: {
     width: 90,
-    padding: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
+    padding: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
     borderWidth: 2,
-    borderColor: Colors.textSecondary,
-    borderStyle: 'dashed',
-    alignItems: 'center',
-    gap: Spacing.xs,
+    borderColor: 'var(--color-text-secondary)',
+    borderStyle: 'dashed' as const,
+    alignItems: 'center' as const,
+    gap: 4,
   },
   itemsSection: {
-    marginTop: Spacing.md,
-    padding: Spacing.md,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
+    marginTop: 16,
+    padding: 16,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
   },
   sectionTitle: {
-    marginBottom: Spacing.md,
+    marginBottom: 16,
   },
   itemCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
-    padding: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
-    marginBottom: Spacing.sm,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
+    padding: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
+    marginBottom: 8,
   },
   itemContent: {
     flex: 1,
   },
   addItemButton: {
-    padding: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
+    padding: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
     borderWidth: 1,
-    borderColor: Colors.textSecondary,
-    borderStyle: 'dashed',
-    alignItems: 'center',
+    borderColor: 'var(--color-text-secondary)',
+    borderStyle: 'dashed' as const,
+    alignItems: 'center' as const,
   },
   createForm: {
-    padding: Spacing.md,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
-    marginTop: Spacing.sm,
-    marginBottom: Spacing.sm,
+    padding: 16,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
+    marginTop: 8,
+    marginBottom: 8,
   },
   input: {
-    backgroundColor: Colors.background,
+    backgroundColor: 'var(--color-background)',
     borderWidth: 1,
-    borderColor: Colors.textSecondary,
-    borderRadius: Spacing.xs,
-    padding: Spacing.sm,
-    color: Colors.text,
+    borderColor: 'var(--color-text-secondary)',
+    borderRadius: 4,
+    padding: 8,
+    color: 'var(--color-text)',
     fontSize: 14,
-    marginBottom: Spacing.sm,
+    marginBottom: 8,
   },
   formButtons: {
-    flexDirection: 'row',
-    gap: Spacing.sm,
-    justifyContent: 'flex-end',
+    flexDirection: 'row' as const,
+    gap: 8,
+    justifyContent: 'flex-end' as const,
   },
   cancelButton: {
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
   },
   createButton: {
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    backgroundColor: Colors.purple.primary,
-    borderRadius: Spacing.xs,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: 'var(--purple-primary)',
+    borderRadius: 4,
   },
 });

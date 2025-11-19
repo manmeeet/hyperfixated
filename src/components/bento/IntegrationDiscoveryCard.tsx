@@ -6,11 +6,8 @@
 
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, ScrollView } from '../native-compat';
-import { Card } from '../ui/Card';
-import { Text } from '../ui/Text';
-import { Colors } from '../../constants/colors';
-import { Spacing } from '../../constants/spacing';
-import { DeviceType } from '../../constants/breakpoints';
+import { Card } from '@/components/ui/Card';
+import { Text } from '@/components/ui/Text';
 
 interface Integration {
   id: string;
@@ -23,11 +20,11 @@ interface Integration {
 }
 
 interface IntegrationDiscoveryCardProps {
-  deviceType: DeviceType;
+  deviceType?: string;
 }
 
 export const IntegrationDiscoveryCard: React.FC<IntegrationDiscoveryCardProps> = ({
-  deviceType,
+  deviceType = 'desktop',
 }) => {
   const [integrations] = useState<Integration[]>([
     {
@@ -78,15 +75,15 @@ export const IntegrationDiscoveryCard: React.FC<IntegrationDiscoveryCardProps> =
   ]);
 
   const getRelevanceColor = (relevance: number) => {
-    if (relevance >= 85) return Colors.green.primary;
-    if (relevance >= 70) return Colors.cyan.primary;
-    return Colors.cyan.primary;
+    if (relevance >= 85) return 'var(--green-primary)';
+    if (relevance >= 70) return 'var(--cyan-primary)';
+    return 'var(--cyan-primary)';
   };
 
   const getStatusColor = (status: string) => {
-    if (status === 'connected') return Colors.green.primary;
-    if (status === 'recommended') return Colors.amber.primary;
-    return Colors.textSecondary;
+    if (status === 'connected') return 'var(--green-primary)';
+    if (status === 'recommended') return 'var(--amber-primary)';
+    return 'var(--color-text-secondary)';
   };
 
   return (
@@ -193,103 +190,109 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: Spacing.md,
+    flexDirection: 'row' as const,
+    justifyContent: 'space-between' as const,
+    alignItems: 'center' as const,
+    marginBottom: 16,
   },
   headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
   },
   subtitle: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   badge: {
-    backgroundColor: Colors.cyan.primary,
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    borderRadius: Spacing.sm,
+    backgroundColor: 'var(--cyan-primary)',
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 4,
+    paddingBottom: 4,
+    borderRadius: 8,
   },
   integrationsList: {
     flex: 1,
-    marginBottom: Spacing.md,
+    marginBottom: 16,
   },
   integrationCard: {
-    padding: Spacing.md,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
-    marginBottom: Spacing.md,
-    gap: Spacing.md,
+    padding: 16,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
+    marginBottom: 16,
+    gap: 16,
   },
   integrationMain: {
-    flexDirection: 'row',
-    gap: Spacing.md,
+    flexDirection: 'row' as const,
+    gap: 16,
   },
   integrationContent: {
     flex: 1,
-    gap: Spacing.sm,
+    gap: 8,
   },
   integrationHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'row' as const,
+    justifyContent: 'space-between' as const,
+    alignItems: 'center' as const,
   },
   statusBadge: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    borderRadius: Spacing.xs,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 4,
+    paddingBottom: 4,
+    borderRadius: 4,
   },
   description: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
   },
   metaRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'row' as const,
+    justifyContent: 'space-between' as const,
+    alignItems: 'center' as const,
   },
   categoryBadge: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.xs,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 4,
+    paddingBottom: 4,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 4,
   },
   relevanceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: 8,
   },
   relevanceBar: {
     width: 60,
     height: 4,
-    backgroundColor: Colors.surface,
+    backgroundColor: 'var(--color-surface)',
     borderRadius: 2,
-    overflow: 'hidden',
+    overflow: 'hidden' as const,
   },
   relevanceFill: {
     height: '100%',
   },
   relevanceText: {
-    color: Colors.textSecondary,
+    color: 'var(--color-text-secondary)',
     minWidth: 30,
   },
   connectButton: {
-    padding: Spacing.sm,
-    backgroundColor: Colors.cyan.primary,
-    borderRadius: Spacing.xs,
-    alignItems: 'center',
+    padding: 8,
+    backgroundColor: 'var(--cyan-primary)',
+    borderRadius: 4,
+    alignItems: 'center' as const,
   },
   connectedButton: {
-    backgroundColor: Colors.green.primary,
+    backgroundColor: 'var(--green-primary)',
   },
   discoveryInfo: {
-    padding: Spacing.md,
-    backgroundColor: Colors.surface,
-    borderRadius: Spacing.sm,
+    padding: 16,
+    backgroundColor: 'var(--color-surface)',
+    borderRadius: 8,
   },
   infoText: {
-    color: Colors.textSecondary,
-    textAlign: 'center',
+    color: 'var(--color-text-secondary)',
+    textAlign: 'center' as const,
   },
 });
