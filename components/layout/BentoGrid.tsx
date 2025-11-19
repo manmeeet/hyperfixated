@@ -72,8 +72,16 @@ function getGridClass(componentName: string, index: number): string {
   if (componentName.includes('SmartSchedule')) {
     return 'lg:col-span-12 lg:row-span-1';
   }
+
+  // Gamification cards - varied sizes for visual interest
+  if (componentName.includes('Streak')) {
+    return 'md:col-span-1 lg:col-span-5';
+  }
+  if (componentName.includes('DailyChallenges')) {
+    return 'md:col-span-1 lg:col-span-7';
+  }
   if (componentName.includes('Stats') || componentName.includes('Achievements')) {
-    return 'lg:col-span-6';
+    return 'md:col-span-1 lg:col-span-6';
   }
 
   // New bento cards
