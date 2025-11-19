@@ -1,6 +1,6 @@
 'use client';
 
-import { Card } from '../ui/Card';
+import CardHypermax from '@/src/ui/hypermax/components/CardHypermax';
 import { ScheduleBlock } from '@/types';
 
 /**
@@ -20,7 +20,7 @@ export function SmartSchedule() {
   ];
 
   return (
-    <Card className="w-full">
+    <CardHypermax className="w-full">
       <div className="mb-5">
         <h2 className="text-2xl font-bold mb-1">📅 Today's Schedule</h2>
         <p className="text-sm text-[var(--text-tertiary)]">AI-optimized for your energy levels</p>
@@ -60,7 +60,7 @@ export function SmartSchedule() {
           <p className="text-lg font-bold">3</p>
         </div>
       </div>
-    </Card>
+    </CardHypermax>
   );
 }
 

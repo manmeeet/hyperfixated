@@ -1,6 +1,6 @@
 'use client';
 
-import { Card } from '../ui/Card';
+import CardHypermax from '@/src/ui/hypermax/components/CardHypermax';
 
 export function AchievementsCard() {
   const achievements = [
@@ -31,7 +31,7 @@ export function AchievementsCard() {
   ];
 
   return (
-    <Card variant="gradient-pink" glow="pink" className="relative overflow-hidden">
+    <CardHypermax variant="gradient-pink" glow="pink" className="relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-2xl" />
@@ -140,6 +140,6 @@ export function AchievementsCard() {
           })}
         </div>
       </div>
-    </Card>
+    </CardHypermax>
   );
 }

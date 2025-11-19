@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Card } from '../ui/Card';
+import CardHypermax from '@/src/ui/hypermax/components/CardHypermax';
+import ButtonHypermax from '@/src/ui/hypermax/components/ButtonHypermax';
 import { VoiceButton } from './VoiceButton';
 import { VoiceCommand, VoiceButtonState } from '@/types';
 import { formatTimestamp } from '@/lib/utils';
@@ -41,7 +42,7 @@ export function CommandCenter({ recentCommands = [], onVoicePress }: CommandCent
   ];
 
   return (
-    <Card variant="glass" className="relative overflow-hidden border border-white/20">
+    <CardHypermax variant="gradient" glow className="relative overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-pink-500/20 to-blue-600/20" />
       <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/30 rounded-full blur-3xl" />
@@ -100,28 +101,23 @@ export function CommandCenter({ recentCommands = [], onVoicePress }: CommandCent
           </h3>
           <div className="grid grid-cols-2 gap-3">
             {quickActions.map((action, index) => (
-              <button
+              <ButtonHypermax
                 key={index}
-                className={`
-                  aspect-square rounded-2xl p-4
-                  flex flex-col items-center justify-center gap-2
-                  transition-all duration-300
-                  hover:scale-105 active:scale-95
-                  ${action.gradient} ${action.glow}
-                  border border-white/20
-                  shimmer
-                `}
+                variant={index === 0 ? 'primary' : index === 1 ? 'secondary' : index === 2 ? 'electric' : 'success'}
+                size="lg"
+                glowOnHover
+                className="aspect-square p-4 flex flex-col items-center justify-center gap-2"
               >
                 <span className="text-4xl md:text-5xl">{action.icon}</span>
                 <span className="text-xs md:text-sm font-bold text-white drop-shadow-lg">
                   {action.label}
                 </span>
-              </button>
+              </ButtonHypermax>
             ))}
           </div>
         </div>
       </div>
-    </Card>
+    </CardHypermax>
   );
 }
 

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card } from '../ui/Card';
+import CardHypermax from '@/src/ui/hypermax/components/CardHypermax';
+import ButtonHypermax from '@/src/ui/hypermax/components/ButtonHypermax';
 import { TimerMode, TimerState } from '@/types';
 
 /**
@@ -58,7 +59,7 @@ export function FocusTimer() {
   const centerText = getCenterText(state, timeRemaining);
 
   return (
-    <Card variant={gradient as any} glow={glow as any} className="relative overflow-hidden">
+    <CardHypermax variant="electric" glow className="relative overflow-hidden">
       {/* Animated background effects */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse" />
@@ -74,19 +75,15 @@ export function FocusTimer() {
           </h2>
           <div className="flex gap-2 flex-wrap">
             {(['pomodoro', 'hyperfocus', 'custom'] as TimerMode[]).map((m) => (
-              <button
+              <ButtonHypermax
                 key={m}
                 onClick={() => setMode(m)}
-                className={`
-                  px-4 py-2 rounded-xl text-xs font-bold capitalize
-                  transition-all duration-300
-                  ${mode === m
-                    ? 'bg-white text-purple-600 shadow-lg scale-105'
-                    : 'bg-white/20 text-white/80 hover:bg-white/30'}
-                `}
+                variant={mode === m ? 'primary' : 'ghost'}
+                size="sm"
+                className="capitalize"
               >
                 {m}
-              </button>
+              </ButtonHypermax>
             ))}
           </div>
         </div>
@@ -152,19 +149,15 @@ export function FocusTimer() {
         </div>
 
         {/* Control Button - Enhanced */}
-        <button
+        <ButtonHypermax
           onClick={handleStart}
-          className={`
-            w-full py-4 rounded-2xl font-bold text-lg my-5
-            transition-all duration-300
-            ${state === 'idle'
-              ? 'bg-white text-purple-600 hover:scale-105 shimmer'
-              : 'bg-red-500 text-white hover:bg-red-600'}
-            active:scale-95 shadow-xl
-          `}
+          variant={state === 'idle' ? 'success' : 'danger'}
+          size="lg"
+          glowOnHover
+          className="w-full my-5"
         >
           {state === 'idle' ? '▶️ Start Focus' : '⏸️ Stop'}
-        </button>
+        </ButtonHypermax>
 
         {/* Stats with Colorful Design */}
         <div className="grid grid-cols-3 gap-3 pt-5 border-t border-white/20">
@@ -182,7 +175,7 @@ export function FocusTimer() {
           </div>
         </div>
       </div>
-    </Card>
+    </CardHypermax>
   );
 }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { Card } from '../ui/Card';
+import CardHypermax from '@/src/ui/hypermax/components/CardHypermax';
 
 /**
  * Streak Card - Gamification
@@ -17,7 +17,7 @@ export function StreakCard() {
   const hasStreakFreeze = true;
 
   return (
-    <Card variant="gradient-orange" glow="orange" className="relative overflow-hidden">
+    <CardHypermax variant="gradient-orange" glow="orange" className="relative overflow-hidden">
       {/* Animated background effects */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-yellow-300 rounded-full blur-xl animate-pulse" />
@@ -72,6 +72,6 @@ export function StreakCard() {
           </p>
         </div>
       </div>
-    </Card>
+    </CardHypermax>
   );
 }
