@@ -4,7 +4,7 @@
  * Handles external API integrations and data sync
  */
 
-import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../types/agents';
+import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../../types/agents';
 
 class BridgeAgentImpl implements Agent {
   type = 'bridge' as const;

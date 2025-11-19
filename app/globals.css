@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/* 🧠 HYPERFOCUS AI - SOLID COLOR SYSTEM */
+/* NO transparent washes, NO ambient gradients */
+
+:root {
+  /* NEUTRAL BASE - Absolute no color temperature */
+  --black-pure: #000000;
+  --black-soft: #0A0A0A;
+  --gray-dark: #141414;
+  --gray-medium: #1F1F1F;
+  --gray-light: #292929;
+  --gray-lighter: #333333;
+  --white-dark: #D9D9D9;
+  --white-medium: #EBEBEB;
+  --white-pure: #FFFFFF;
+
+  /* BRAND COLORS - Solid, no transparency */
+  --purple-primary: #7C3AED;
+  --purple-light: #9F67FF;
+  --purple-dark: #6D28D9;
+
+  --orange-primary: #FB923C;
+  --orange-light: #FDB572;
+  --orange-dark: #EA580C;
+
+  --green-primary: #10B981;
+  --green-light: #34D399;
+  --green-dark: #059669;
+
+  --red-primary: #EF4444;
+  --red-light: #F87171;
+  --red-dark: #DC2626;
+
+  --blue-primary: #3B82F6;
+  --blue-light: #60A5FA;
+  --blue-dark: #2563EB;
+
+  /* SEMANTIC COLORS */
+  --bg-primary: var(--black-soft);
+  --bg-secondary: var(--gray-dark);
+  --bg-tertiary: var(--gray-medium);
+  --bg-elevated: var(--gray-light);
+
+  --text-primary: var(--white-pure);
+  --text-secondary: var(--white-medium);
+  --text-tertiary: var(--white-dark);
+  --text-disabled: var(--gray-lighter);
+
+  --border-default: var(--gray-light);
+  --border-light: var(--gray-lighter);
+  --border-focus: var(--purple-primary);
+
+  /* RETRO TERMINAL COLORS */
+  --terminal-green: var(--green-primary);
+  --terminal-amber: var(--orange-primary);
+  --terminal-prompt: var(--purple-light);
+}
+
+@theme inline {
+  /* Colors */
+  --color-black-pure: var(--black-pure);
+  --color-black-soft: var(--black-soft);
+  --color-gray-dark: var(--gray-dark);
+  --color-gray-medium: var(--gray-medium);
+  --color-gray-light: var(--gray-light);
+  --color-gray-lighter: var(--gray-lighter);
+  --color-white-dark: var(--white-dark);
+  --color-white-medium: var(--white-medium);
+  --color-white-pure: var(--white-pure);
+
+  --color-purple-primary: var(--purple-primary);
+  --color-purple-light: var(--purple-light);
+  --color-purple-dark: var(--purple-dark);
+
+  --color-orange-primary: var(--orange-primary);
+  --color-orange-light: var(--orange-light);
+  --color-orange-dark: var(--orange-dark);
+
+  --color-green-primary: var(--green-primary);
+  --color-green-light: var(--green-light);
+  --color-green-dark: var(--green-dark);
+
+  --color-red-primary: var(--red-primary);
+  --color-red-light: var(--red-light);
+  --color-red-dark: var(--red-dark);
+
+  --color-blue-primary: var(--blue-primary);
+  --color-blue-light: var(--blue-light);
+  --color-blue-dark: var(--blue-dark);
+
+  /* Spacing scale */
+  --spacing-xs: 0.25rem;    /* 4px */
+  --spacing-sm: 0.5rem;     /* 8px */
+  --spacing-md: 0.75rem;    /* 12px */
+  --spacing-base: 1rem;     /* 16px */
+  --spacing-lg: 1.25rem;    /* 20px */
+  --spacing-xl: 1.5rem;     /* 24px */
+  --spacing-2xl: 2rem;      /* 32px */
+  --spacing-3xl: 3rem;      /* 48px */
+  --spacing-4xl: 4rem;      /* 64px */
+
+  /* Border radius */
+  --radius-card: 0.75rem;   /* 12px */
+  --radius-md: 0.5rem;      /* 8px */
+
+  /* Fonts */
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Courier New', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling - retro terminal aesthetic */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-light);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-lighter);
+}

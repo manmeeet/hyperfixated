@@ -5,7 +5,7 @@
  */
 
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, TextInput, ScrollView } from '../native-compat';
 import { Card } from '../ui/Card';
 import { Text } from '../ui/Text';
 import { Colors } from '../../constants/colors';
@@ -102,7 +102,7 @@ export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType
   };
 
   return (
-    <Card size={deviceType === 'mobile' ? 'medium' : 'large'}>
+    <Card>
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
@@ -131,7 +131,7 @@ export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType
             <TextInput
               style={styles.input}
               placeholder="Enter a complex task..."
-              placeholderTextColor={Colors.text.tertiary}
+             
               value={newTaskTitle}
               onChangeText={setNewTaskTitle}
               autoFocus
@@ -156,7 +156,7 @@ export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType
         )}
 
         {/* Tasks List */}
-        <ScrollView style={styles.tasksList} showsVerticalScrollIndicator={false}>
+        <ScrollView style={styles.tasksList}>
           {tasks.map(task => {
             const completedCount = task.subtasks.filter(st => st.completed).length;
             const totalTime = task.subtasks.reduce((sum, st) => sum + st.estimatedMinutes, 0);
@@ -164,7 +164,7 @@ export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType
             return (
               <View key={task.id} style={styles.taskCard}>
                 <View style={styles.taskHeader}>
-                  <Text variant="heading" size="md" weight="bold" style={styles.taskTitle}>
+                  <Text variant="heading" size="base" weight="bold" style={styles.taskTitle}>
                     {task.title}
                   </Text>
                   <View
@@ -194,10 +194,10 @@ export const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({ deviceType
                       <View style={styles.subtaskContent}>
                         <Text
                           size="sm"
-                          style={[
-                            styles.subtaskTitle,
-                            subtask.completed && styles.subtaskCompleted,
-                          ]}
+                          style={{
+                            ...styles.subtaskTitle,
+                            ...(subtask.completed ? styles.subtaskCompleted : {}),
+                          }}
                         >
                           {subtask.title}
                         </Text>
@@ -242,24 +242,24 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
   },
   subtitle: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
   },
   addButton: {
     padding: Spacing.xs,
   },
   createForm: {
     padding: Spacing.md,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
     marginBottom: Spacing.md,
   },
   input: {
-    backgroundColor: Colors.background.primary,
+    backgroundColor: Colors.background,
     borderWidth: 1,
-    borderColor: Colors.border.default,
+    borderColor: Colors.textSecondary,
     borderRadius: Spacing.xs,
     padding: Spacing.sm,
-    color: Colors.text.primary,
+    color: Colors.text,
     fontSize: 14,
     marginBottom: Spacing.sm,
   },
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
   },
   createButton: {
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
   },
   taskCard: {
     padding: Spacing.md,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
     marginBottom: Spacing.md,
   },
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
     borderRadius: Spacing.xs,
   },
   taskMeta: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
     marginBottom: Spacing.md,
   },
   subtasksList: {
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.sm,
     padding: Spacing.sm,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
   },
   subtaskContent: {
@@ -327,10 +327,10 @@ const styles = StyleSheet.create({
   },
   subtaskCompleted: {
     textDecorationLine: 'line-through',
-    color: Colors.text.tertiary,
+    color: Colors.textSecondary,
   },
   timeEstimate: {
-    color: Colors.text.tertiary,
+    color: Colors.textSecondary,
   },
   emptyState: {
     alignItems: 'center',
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     gap: Spacing.md,
   },
   emptyText: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
     textAlign: 'center',
   },
 });

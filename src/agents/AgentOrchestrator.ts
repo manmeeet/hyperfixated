@@ -12,7 +12,7 @@ import {
   FeatureRequest,
   AgentOrchestrationPlan,
   AgentResult,
-} from '../types/agents';
+} from '../../types/agents';
 
 export class AgentOrchestrator {
   private agents: Map<AgentType, Agent> = new Map();

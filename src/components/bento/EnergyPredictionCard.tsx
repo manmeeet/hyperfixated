@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from '../native-compat';
 import { Card } from '../ui/Card';
 import { Text } from '../ui/Text';
 import { Colors } from '../../constants/colors';
@@ -49,7 +49,7 @@ export const EnergyPredictionCard: React.FC<EnergyPredictionCardProps> = ({ devi
   const nextPeakHour = predictedEnergy.findIndex(level => level >= 80);
 
   return (
-    <Card size="medium">
+    <Card>
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
   },
   subtitle: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
   },
   badge: {
     paddingHorizontal: Spacing.md,
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     minHeight: 4,
   },
   hourLabel: {
-    color: Colors.text.tertiary,
+    color: Colors.textSecondary,
   },
   insights: {
     gap: Spacing.sm,
@@ -174,11 +174,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.sm,
     padding: Spacing.sm,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
   },
   insightText: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
   },
   logButton: {
     padding: Spacing.md,

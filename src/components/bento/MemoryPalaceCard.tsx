@@ -5,14 +5,14 @@
  */
 
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, TextInput, ScrollView } from '../native-compat';
 import { Card } from '../ui/Card';
 import { Text } from '../ui/Text';
 import { Colors } from '../../constants/colors';
 import { Spacing } from '../../constants/spacing';
 import { DeviceType } from '../../constants/breakpoints';
 import { useMemoryPalaceStore } from '../../store/slices/memoryPalaceSlice';
-import { Room, MemoryItem } from '../../types/memoryPalace';
+import { Room, MemoryItem } from '../../../types/memoryPalace';
 
 interface MemoryPalaceCardProps {
   deviceType: DeviceType;
@@ -97,7 +97,7 @@ export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }
   const totalItems = currentPalace?.metadata.totalItems || 0;
 
   return (
-    <Card size={deviceType === 'mobile' ? 'large' : 'medium'}>
+    <Card>
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
@@ -120,9 +120,9 @@ export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }
         </View>
 
         {/* Rooms Grid */}
-        <ScrollView style={styles.roomsContainer} showsVerticalScrollIndicator={false}>
+        <ScrollView style={styles.roomsContainer}>
           <View style={styles.roomsGrid}>
-            {rooms.map((room) => (
+            {rooms.map((room: Room) => (
               <TouchableOpacity
                 key={room.id}
                 style={[
@@ -132,7 +132,7 @@ export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }
                 onPress={() => setSelectedRoom(room)}
               >
                 <Text size="3xl">{room.emoji}</Text>
-                <Text size="sm" weight="semibold" numberOfLines={1}>
+                <Text size="sm" weight="semibold">
                   {room.name}
                 </Text>
                 <Text size="xs" style={styles.itemCount}>
@@ -161,7 +161,7 @@ export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }
               <TextInput
                 style={styles.input}
                 placeholder="Room name..."
-                placeholderTextColor={Colors.text.tertiary}
+               
                 value={newRoomName}
                 onChangeText={setNewRoomName}
                 autoFocus
@@ -191,11 +191,11 @@ export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }
           {/* Selected Room Items */}
           {selectedRoom && (
             <View style={styles.itemsSection}>
-              <Text variant="heading" size="md" weight="bold" style={styles.sectionTitle}>
+              <Text variant="heading" size="base" weight="bold" style={styles.sectionTitle}>
                 {selectedRoom.emoji} {selectedRoom.name}
               </Text>
 
-              {selectedRoom.items.map((item) => (
+              {selectedRoom.items.map((item: MemoryItem) => (
                 <View key={item.id} style={styles.itemCard}>
                   <Text size="lg">{item.emoji}</Text>
                   <Text size="sm" style={styles.itemContent}>
@@ -219,7 +219,7 @@ export const MemoryPalaceCard: React.FC<MemoryPalaceCardProps> = ({ deviceType }
                   <TextInput
                     style={styles.input}
                     placeholder="Memory item..."
-                    placeholderTextColor={Colors.text.tertiary}
+                   
                     value={newItemContent}
                     onChangeText={setNewItemContent}
                     autoFocus
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
   },
   subtitle: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
   },
   badge: {
     backgroundColor: Colors.green.primary,
@@ -290,27 +290,27 @@ const styles = StyleSheet.create({
   roomCard: {
     width: 90,
     padding: Spacing.sm,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
     borderWidth: 2,
-    borderColor: Colors.border.default,
+    borderColor: Colors.textSecondary,
     alignItems: 'center',
     gap: Spacing.xs,
   },
   roomCardSelected: {
     borderColor: Colors.purple.primary,
-    backgroundColor: Colors.purple.secondary,
+    backgroundColor: Colors.purple.light,
   },
   itemCount: {
-    color: Colors.text.tertiary,
+    color: Colors.textSecondary,
   },
   addRoomButton: {
     width: 90,
     padding: Spacing.sm,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
     borderWidth: 2,
-    borderColor: Colors.border.default,
+    borderColor: Colors.textSecondary,
     borderStyle: 'dashed',
     alignItems: 'center',
     gap: Spacing.xs,
@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
   itemsSection: {
     marginTop: Spacing.md,
     padding: Spacing.md,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
   },
   sectionTitle: {
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.sm,
     padding: Spacing.sm,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
     marginBottom: Spacing.sm,
   },
@@ -338,27 +338,27 @@ const styles = StyleSheet.create({
   },
   addItemButton: {
     padding: Spacing.sm,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
     borderWidth: 1,
-    borderColor: Colors.border.default,
+    borderColor: Colors.textSecondary,
     borderStyle: 'dashed',
     alignItems: 'center',
   },
   createForm: {
     padding: Spacing.md,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
     marginTop: Spacing.sm,
     marginBottom: Spacing.sm,
   },
   input: {
-    backgroundColor: Colors.background.primary,
+    backgroundColor: Colors.background,
     borderWidth: 1,
-    borderColor: Colors.border.default,
+    borderColor: Colors.textSecondary,
     borderRadius: Spacing.xs,
     padding: Spacing.sm,
-    color: Colors.text.primary,
+    color: Colors.text,
     fontSize: 14,
     marginBottom: Spacing.sm,
   },
@@ -370,7 +370,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
   },
   createButton: {

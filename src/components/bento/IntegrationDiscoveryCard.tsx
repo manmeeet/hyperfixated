@@ -5,7 +5,7 @@
  */
 
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, ScrollView } from '../native-compat';
 import { Card } from '../ui/Card';
 import { Text } from '../ui/Text';
 import { Colors } from '../../constants/colors';
@@ -80,17 +80,17 @@ export const IntegrationDiscoveryCard: React.FC<IntegrationDiscoveryCardProps> =
   const getRelevanceColor = (relevance: number) => {
     if (relevance >= 85) return Colors.green.primary;
     if (relevance >= 70) return Colors.cyan.primary;
-    return Colors.blue.primary;
+    return Colors.cyan.primary;
   };
 
   const getStatusColor = (status: string) => {
     if (status === 'connected') return Colors.green.primary;
     if (status === 'recommended') return Colors.amber.primary;
-    return Colors.text.tertiary;
+    return Colors.textSecondary;
   };
 
   return (
-    <Card size={deviceType === 'mobile' ? 'medium' : 'large'}>
+    <Card>
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
@@ -113,14 +113,14 @@ export const IntegrationDiscoveryCard: React.FC<IntegrationDiscoveryCardProps> =
         </View>
 
         {/* Integrations List */}
-        <ScrollView style={styles.integrationsList} showsVerticalScrollIndicator={false}>
+        <ScrollView style={styles.integrationsList}>
           {integrations.map(integration => (
             <View key={integration.id} style={styles.integrationCard}>
               <View style={styles.integrationMain}>
                 <Text size="3xl">{integration.emoji}</Text>
                 <View style={styles.integrationContent}>
                   <View style={styles.integrationHeader}>
-                    <Text variant="heading" size="md" weight="bold">
+                    <Text variant="heading" size="base" weight="bold">
                       {integration.name}
                     </Text>
                     <View
@@ -204,10 +204,10 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
   },
   subtitle: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
   },
   badge: {
-    backgroundColor: Colors.blue.primary,
+    backgroundColor: Colors.cyan.primary,
     paddingHorizontal: Spacing.sm,
     paddingVertical: Spacing.xs,
     borderRadius: Spacing.sm,
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   },
   integrationCard: {
     padding: Spacing.md,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
     marginBottom: Spacing.md,
     gap: Spacing.md,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     borderRadius: Spacing.xs,
   },
   description: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
   },
   metaRow: {
     flexDirection: 'row',
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
   categoryBadge: {
     paddingHorizontal: Spacing.sm,
     paddingVertical: Spacing.xs,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
   },
   relevanceContainer: {
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   relevanceBar: {
     width: 60,
     height: 4,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: 2,
     overflow: 'hidden',
   },
@@ -271,12 +271,12 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   relevanceText: {
-    color: Colors.text.tertiary,
+    color: Colors.textSecondary,
     minWidth: 30,
   },
   connectButton: {
     padding: Spacing.sm,
-    backgroundColor: Colors.blue.primary,
+    backgroundColor: Colors.cyan.primary,
     borderRadius: Spacing.xs,
     alignItems: 'center',
   },
@@ -285,11 +285,11 @@ const styles = StyleSheet.create({
   },
   discoveryInfo: {
     padding: Spacing.md,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
   },
   infoText: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
     textAlign: 'center',
   },
 });

@@ -12,7 +12,7 @@ import type {
   CommandExecution,
   HyperfixationDomain,
   LifecyclePhase,
-} from '../types/hyperfixation';
+} from '../../types/hyperfixation';
 
 // ============================================================================
 // COMMAND PATTERN DEFINITIONS

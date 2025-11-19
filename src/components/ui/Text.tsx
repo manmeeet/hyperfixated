@@ -1,96 +1,53 @@
 import React from 'react';
-import { Text as RNText, TextStyle, StyleSheet } from 'react-native';
-import { Colors } from '../../constants/colors';
-import { Typography } from '../../constants/typography';
 
 interface TextProps {
   children: React.ReactNode;
-  variant?: 'display' | 'heading' | 'body' | 'caption' | 'mono';
-  size?: keyof typeof Typography.size;
-  weight?: keyof typeof Typography.weight;
+  variant?: 'heading' | 'body' | 'caption';
+  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl';
+  weight?: 'normal' | 'medium' | 'semibold' | 'bold';
   color?: string;
-  style?: TextStyle;
-  numberOfLines?: number;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
-/**
- * Base Text Component
- *
- * Supports:
- * - Typography hierarchy
- * - Monospace for data/terminal
- * - Consistent styling
- */
 export const Text: React.FC<TextProps> = ({
   children,
   variant = 'body',
-  size,
-  weight,
-  color = Colors.text.primary,
-  style,
-  numberOfLines,
+  size = 'base',
+  weight = 'normal',
+  color,
+  className = '',
+  style
 }) => {
-  const variantStyle = getVariantStyle(variant);
-  const fontSize = size ? Typography.size[size] : variantStyle.fontSize;
-  const fontWeight = weight ? Typography.weight[weight] : variantStyle.fontWeight;
-  const fontFamily = variant === 'mono' ? Typography.fonts.mono : Typography.fonts.sans;
+  const sizeClasses = {
+    xs: 'text-xs',
+    sm: 'text-sm',
+    base: 'text-base',
+    lg: 'text-lg',
+    xl: 'text-xl',
+    '2xl': 'text-2xl',
+    '3xl': 'text-3xl'
+  };
+
+  const weightClasses = {
+    normal: 'font-normal',
+    medium: 'font-medium',
+    semibold: 'font-semibold',
+    bold: 'font-bold'
+  };
+
+  const variantClasses = {
+    heading: 'font-bold',
+    body: '',
+    caption: 'text-sm opacity-75'
+  };
 
   return (
-    <RNText
-      style={[
-        styles.text,
-        {
-          fontSize,
-          fontWeight,
-          fontFamily,
-          color,
-        },
-        style,
-      ]}
-      numberOfLines={numberOfLines}
+    <span
+      className={`${sizeClasses[size]} ${weightClasses[weight]} ${variantClasses[variant]} ${className}`}
+      style={{ color, ...style }}
     >
       {children}
-    </RNText>
+    </span>
   );
 };
-
-const getVariantStyle = (variant: string) => {
-  switch (variant) {
-    case 'display':
-      return {
-        fontSize: Typography.size['4xl'],
-        fontWeight: Typography.weight.bold,
-      };
-    case 'heading':
-      return {
-        fontSize: Typography.size['2xl'],
-        fontWeight: Typography.weight.semibold,
-      };
-    case 'body':
-      return {
-        fontSize: Typography.size.base,
-        fontWeight: Typography.weight.regular,
-      };
-    case 'caption':
-      return {
-        fontSize: Typography.size.sm,
-        fontWeight: Typography.weight.regular,
-      };
-    case 'mono':
-      return {
-        fontSize: Typography.size.sm,
-        fontWeight: Typography.weight.regular,
-      };
-    default:
-      return {
-        fontSize: Typography.size.base,
-        fontWeight: Typography.weight.regular,
-      };
-  }
-};
-
-const styles = StyleSheet.create({
-  text: {
-    lineHeight: Typography.lineHeight.normal * 16,
-  },
-});

@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from '../native-compat';
 import { Card } from '../ui/Card';
 import { Text } from '../ui/Text';
 import { Colors } from '../../constants/colors';
@@ -40,11 +40,11 @@ export const InterestRotationCard: React.FC<InterestRotationCardProps> = ({ devi
   const getIntensityColor = (level: number) => {
     if (level >= 75) return Colors.pink.primary;
     if (level >= 50) return Colors.purple.primary;
-    return Colors.blue.primary;
+    return Colors.cyan.primary;
   };
 
   return (
-    <Card size="medium">
+    <Card>
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
@@ -63,8 +63,8 @@ export const InterestRotationCard: React.FC<InterestRotationCardProps> = ({ devi
 
         {/* Current Interest */}
         <View style={styles.currentInterest}>
-          <Text size="4xl">{currentInterest.emoji}</Text>
-          <Text variant="heading" size="md" weight="bold" style={styles.interestName}>
+          <Text size="3xl">{currentInterest.emoji}</Text>
+          <Text variant="heading" size="base" weight="bold" style={styles.interestName}>
             {currentInterest.name}
           </Text>
 
@@ -169,12 +169,12 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
   },
   subtitle: {
-    color: Colors.text.secondary,
+    color: Colors.textSecondary,
   },
   currentInterest: {
     alignItems: 'center',
     padding: Spacing.md,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.sm,
     marginBottom: Spacing.md,
   },
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     gap: Spacing.xs,
   },
   statLabel: {
-    color: Colors.text.tertiary,
+    color: Colors.textSecondary,
   },
   intensityBadge: {
     paddingHorizontal: Spacing.md,
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   },
   prediction: {
     padding: Spacing.md,
-    backgroundColor: Colors.purple.secondary,
+    backgroundColor: Colors.purple.light,
     borderRadius: Spacing.sm,
     marginBottom: Spacing.md,
     borderWidth: 1,
@@ -217,11 +217,11 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.xs,
   },
   predictionDate: {
-    color: Colors.text.tertiary,
+    color: Colors.textSecondary,
   },
   progressBar: {
     height: 8,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
     overflow: 'hidden',
   },
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.sm,
     padding: Spacing.sm,
-    backgroundColor: Colors.background.tertiary,
+    backgroundColor: Colors.surface,
     borderRadius: Spacing.xs,
   },
   nextInterestContent: {
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
   },
   probabilityBar: {
     height: 4,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.surface,
     borderRadius: 2,
     overflow: 'hidden',
   },
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.pink.primary,
   },
   probabilityText: {
-    color: Colors.text.tertiary,
+    color: Colors.textSecondary,
     minWidth: 40,
     textAlign: 'right',
   },

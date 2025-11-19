@@ -4,7 +4,7 @@
  * Adds analytics and learning capabilities
  */
 
-import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../types/agents';
+import { Agent, AgentTask, AgentResult, AgentCapabilities } from '../../types/agents';
 
 class InsightAgentImpl implements Agent {
   type = 'insight' as const;
