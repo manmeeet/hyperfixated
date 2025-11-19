@@ -62,7 +62,7 @@ export function DailyChallengesCard() {
   ]);
 
   return (
-    <CardHypermax variant="gradient-purple" glow="purple" className="relative overflow-hidden">
+    <CardHypermax variant="gradient" glowOnHover className="relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-2xl" />

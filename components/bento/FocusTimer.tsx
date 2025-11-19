@@ -59,7 +59,7 @@ export function FocusTimer() {
   const centerText = getCenterText(state, timeRemaining);
 
   return (
-    <CardHypermax variant="electric" glow className="relative overflow-hidden">
+    <CardHypermax variant="electric" glowOnHover className="relative overflow-hidden">
       {/* Animated background effects */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse" />

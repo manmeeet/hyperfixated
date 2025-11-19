@@ -42,7 +42,7 @@ export function CommandCenter({ recentCommands = [], onVoicePress }: CommandCent
   ];
 
   return (
-    <CardHypermax variant="gradient" glow className="relative overflow-hidden">
+    <CardHypermax variant="gradient" glowOnHover className="relative overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-pink-500/20 to-blue-600/20" />
       <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/30 rounded-full blur-3xl" />
