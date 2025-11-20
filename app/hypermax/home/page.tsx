@@ -1,6 +1,18 @@
+/**
+ * Hypermax Home Page
+ *
+ * Main dashboard with bento grid layout showing:
+ * - Command Center
+ * - Focus Timer
+ * - Streaks
+ * - Daily Challenges
+ * - Stats
+ * - Achievements
+ */
+
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import ResponsiveLayout from '@/src/ui/hypermax/layouts/ResponsiveLayout';
 import BottomNavHypermax from '@/src/ui/hypermax/components/BottomNavHypermax';
@@ -14,30 +26,13 @@ import { DailyChallengesCard } from '@/components/bento/DailyChallengesCard';
 import { StreakCard } from '@/components/bento/StreakCard';
 import { VoiceCommand } from '@/types';
 
-// Lazy load heavy components for better performance
-const MemoryPalaceCard = dynamic(() => import('@/src/components/bento/MemoryPalaceCard').then(mod => ({ default: mod.MemoryPalaceCard })), {
-  loading: () => <div className="skeleton-loader">Loading...</div>,
-  ssr: false
-});
+// Lazy load heavy components
+const MemoryPalaceCard = dynamic(
+  () => import('@/src/components/bento/MemoryPalaceCard').then((mod) => ({ default: mod.MemoryPalaceCard })),
+  { loading: () => <div className="skeleton-loader">Loading...</div>, ssr: false }
+);
 
-const EnergyPredictionCard = dynamic(() => import('@/src/components/bento/EnergyPredictionCard').then(mod => ({ default: mod.EnergyPredictionCard })), {
-  loading: () => <div className="skeleton-loader">Loading...</div>,
-  ssr: false
-});
-
-/**
- * 🧠 HYPERFOCUS AI - REDESIGNED
- * Maximalist Gamified Bento Box UI
- *
- * Features:
- * - Hypermaximalist gamified UI design
- * - Vibrant gradients and animations
- * - XP/Level system
- * - Streak tracking
- * - Daily challenges
- * - Mobile-first bento grid layout
- */
-export default function Home() {
+export default function HomePage() {
   const [recentCommands] = useState<VoiceCommand[]>([
     {
       id: '1',
@@ -55,7 +50,6 @@ export default function Home() {
 
   const handleVoiceCommand = () => {
     console.log('Voice command initiated');
-    // Voice command logic will be implemented here
   };
 
   // XP System
@@ -71,7 +65,9 @@ export default function Home() {
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-3">
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold flex items-center gap-2 text-white">
-            <span role="img" aria-label="Fox mascot" className="bounce">🦊</span>
+            <span role="img" aria-label="Fox mascot" className="bounce">
+              🦊
+            </span>
             HyperFox
           </h1>
           <div className="gradient-amber-orange px-3 py-1.5 rounded-full border border-white/20 shimmer">
@@ -80,11 +76,10 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <button
-          className="p-2 hover:bg-white/10 rounded-lg transition-all hover:scale-110"
-          aria-label="Settings"
-        >
-          <span className="text-xl md:text-2xl" role="img" aria-hidden="true">⚙️</span>
+        <button className="p-2 hover:bg-white/10 rounded-lg transition-all hover:scale-110" aria-label="Settings">
+          <span className="text-xl md:text-2xl" role="img" aria-hidden="true">
+            ⚙️
+          </span>
         </button>
       </div>
 
@@ -99,10 +94,7 @@ export default function Home() {
           </p>
         </div>
         <div className="h-3 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm border border-white/10">
-          <div
-            className="h-full gradient-animated xp-fill relative"
-            style={{ width: `${xpProgress}%` }}
-          >
+          <div className="h-full gradient-animated xp-fill relative" style={{ width: `${xpProgress}%` }}>
             <div className="absolute inset-0 progress-shine" />
           </div>
         </div>
@@ -110,31 +102,19 @@ export default function Home() {
     </div>
   );
 
-  // Bottom nav with routes pointing to root-level pages
-  const navItems = [
-    { href: '/', label: 'Home', icon: '🏠', gradient: 'gradient-purple-pink' },
-    { href: '/actions', label: 'Actions', icon: '⚡', gradient: 'gradient-amber-orange' },
-    { href: '/voice', label: 'Voice', icon: '🎤', gradient: 'gradient-cyan-blue' },
-    { href: '/stats', label: 'Stats', icon: '📊', gradient: 'gradient-green-cyan' },
-    { href: '/profile', label: 'Profile', icon: '👤', gradient: 'gradient-pink-orange' }
-  ];
-
   return (
     <ResponsiveLayout
       mobileProps={{
         header,
-        bottomNav: <BottomNavHypermax items={navItems} />,
+        bottomNav: <BottomNavHypermax />,
       }}
       desktopProps={{
         header,
       }}
     >
       <BentoGrid>
-        {/* Row 1: Command Center (large) + Focus Timer */}
-        <CommandCenter
-          recentCommands={recentCommands}
-          onVoicePress={handleVoiceCommand}
-        />
+        {/* Row 1: Command Center + Focus Timer */}
+        <CommandCenter recentCommands={recentCommands} onVoicePress={handleVoiceCommand} />
         <FocusTimer />
 
         {/* Row 2: Streak + Daily Challenges */}
@@ -145,12 +125,8 @@ export default function Home() {
         <StatsCard />
         <AchievementsCard />
 
-        {/* Row 4: Smart Schedule (full width on mobile) */}
+        {/* Row 4: Smart Schedule */}
         <SmartSchedule />
-
-        {/* Optional: Lazy-loaded advanced cards */}
-        {/* <MemoryPalaceCard deviceType="desktop" /> */}
-        {/* <EnergyPredictionCard deviceType="desktop" /> */}
       </BentoGrid>
     </ResponsiveLayout>
   );
